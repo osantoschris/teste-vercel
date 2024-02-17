@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Login Flask</title>
+</head>
+<body>
+    <div class="container">
+        <form action="{{ url_for('login') }}" method="post">
+            <div class="username">
+                <label for="username">usuário:</label>
+                <input type="text" name="username" id="username">
+            </div>
+            <div class="password">
+                <label for="password">senha:</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <button type="submit">entrar</button>
+
+            <div class="message">
+                {% with message = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="alert alert={{ category }}"> {{ message }}</div>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>
